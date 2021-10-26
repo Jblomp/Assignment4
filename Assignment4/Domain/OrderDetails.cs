@@ -4,7 +4,10 @@ using System.Text;
 
 namespace Assignment4.Domain
 {
-    class Class1
+    class OrderDetails
     {
+
+
+
     }
 }
