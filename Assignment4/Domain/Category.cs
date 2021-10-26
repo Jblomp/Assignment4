@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EfEx.Domain
+namespace Assignment4.Domain
 {
     //[Table("categories")]
     public class Category

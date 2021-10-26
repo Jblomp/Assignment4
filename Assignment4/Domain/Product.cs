@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EfEx.Domain
+namespace Assignment4.Domain
 {
     public class Product
     {
@@ -12,6 +12,7 @@ namespace EfEx.Domain
         public string Name { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+        public OrderDetails OrderDetails { get; set; }
 
         public override string ToString()
         {

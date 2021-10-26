@@ -1,8 +1,8 @@
-﻿using EfEx.Domain;
+﻿using Assignment4.Domain;
 using Microsoft.EntityFrameworkCore;
 using System;
 
-namespace EfEx
+namespace Assignment4
 {
     public class NorthwindContext : DbContext
     {

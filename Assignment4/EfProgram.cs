@@ -1,9 +1,9 @@
-﻿using EfEx.Domain;
+﻿using Assignment4.Domain;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 
-namespace EfEx
+namespace Assignment4
 {
     internal class EfProgram
     {
