@@ -13,10 +13,11 @@ namespace Assignment4.Domain
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public ICollection<Product> Product { get; set; }
 
         public override string ToString()
         {
-            return $"Id = {Id}, Name = {Name}";
+            return $"Id = {Id}, Name = {Name}, Description = {Description}, Product = {Product}";
         }
     }
 }

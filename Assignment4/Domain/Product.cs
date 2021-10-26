@@ -12,11 +12,11 @@ namespace Assignment4.Domain
         public string Name { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
-        public OrderDetails OrderDetails { get; set; }
+        public ICollection<OrderDetails> OrderDetails { get; set; }
 
         public override string ToString()
         {
-            return $"Id = {Id}, Name = {Name}, Category = {Category}";
+            return $"Id = {Id}, Name = {Name}, CategoryId = {CategoryId}, Category = {Category}, OrderDetails = {OrderDetails}";
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Assignment4.Domain
 {
-    class Order
+    public class Order
     {
         public int Id { get; set; }
         public string Date { get; set; }
@@ -13,9 +13,10 @@ namespace Assignment4.Domain
         public int Freight { get; set; }
         public string ShipName { get; set; }
         public string ShipCity { get; set; }
+        public ICollection<OrderDetails> OrderDetails { get; set; }
         public override string ToString()
         {
-            return $"Id = {Id}, Date = {Date}, Require = {Require}, Shipped = {Shipped}, Freight = {Freight}, ShipName = {ShipName}, Name = {ShipCity}";
+            return $"Id = {Id}, Date = {Date}, Require = {Require}, Shipped = {Shipped}, Freight = {Freight}, ShipName = {ShipName}, ShipCity = {ShipCity}, OrderDetails = {OrderDetails}";
         }
 
     }
