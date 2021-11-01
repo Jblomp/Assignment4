@@ -18,9 +18,17 @@ namespace Assignment4
 
         IList<Product> GetProducts();
 
+        Product CreateProduct(string Name, int price, string quant, int stock);
+
         IList<OrderDetails> GetOrderDetails();
 
         IList<Order> GetOrder();
+
+        bool DeleteCategory(int id);
+
+        bool UpdateCategory(int id, string name, string desc);
+
+        Product GetProduct(int id);
     }
 
     public class DataService : IDataService
@@ -49,12 +57,25 @@ namespace Assignment4
             return ctx.Products.ToList();
         }
 
+        public Product CreateProduct(string name, int price, string quant, int stock)
+        {
+            var ctx = new NorthwindContext();
+            Product product = new Product();
+            product.Id = ctx.Products.Max(x => x.Id) + 1;
+            product.Name = name;
+            product.UnitPrice = price;
+            product.QuantityPerUnit = quant;
+            product.UnitsInStock = stock;
+            product.Category = GetCategory(product.CategoryId);
+            ctx.Add(product);
+            ctx.SaveChanges();
+            return product;
+        }
+
         public Category GetCategory(int v)
         {
             var ctx = new NorthwindContext();
-            var list =  ctx.Categories.ToList();
-            var category = list[v - 1];
-            return category;
+            return ctx.Categories.FirstOrDefault(x => x.Id == v);
         }
 
         public IList<OrderDetails> GetOrderDetails()
@@ -63,16 +84,50 @@ namespace Assignment4
             return ctx.OrderDetails.ToList();
         }
 
-        public void DeleteCategory(int id)
+        public bool DeleteCategory(int id)
         {
             var ctx = new NorthwindContext();
-            ctx.Categories.Remove(ctx.Categories.Find(id));
+            var categoryToRemove = GetCategory(id);
+            if (categoryToRemove == null)
+            { 
+                return false; 
+            }
+            ctx.Categories.Remove(categoryToRemove);
+            ctx.SaveChanges();
+            return true;
         }
 
         public IList<Order> GetOrder()
         {
             var ctx = new NorthwindContext();
             return ctx.Order.ToList();
+        }
+
+        public bool UpdateCategory(int id, string name, string desc)
+        {
+            var ctx = new NorthwindContext();
+            var cat = GetCategory(id);
+            if (cat == null) 
+            {
+                return false;
+            }
+            ctx.Categories.Find(id).Name = name;
+            ctx.Categories.Find(id).Description = desc;
+            ctx.SaveChanges();
+            return true;
+        }
+
+        public Product GetProduct(int v)
+        {
+            var ctx = new NorthwindContext();
+            var product = ctx.Products.FirstOrDefault(x => x.Id == v);
+            product.Category = GetCategory(product.CategoryId);
+            return product;
+        }
+
+        public object GetProductByCategory(int v)
+        {
+            throw new NotImplementedException();
         }
     }
 }

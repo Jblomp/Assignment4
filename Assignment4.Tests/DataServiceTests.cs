@@ -49,7 +49,7 @@ namespace Assignment4.Tests
             // cleanup
             service.DeleteCategory(category.Id);
         }
-#if COMMENT
+
         [Fact]
         public void DeleteCategory_ValidId_RemoveTheCategory()
         {
@@ -128,7 +128,7 @@ namespace Assignment4.Tests
             Assert.Equal("Beverages", products.First().CategoryName);
             Assert.Equal("Lakkalikööri", products.Last().Name);
         }
-
+#if COMMENT
         [Fact]
         public void GetProduct_NameSubString_ReturnsProductsThatMachesTheSubString()
         {
@@ -206,7 +206,7 @@ namespace Assignment4.Tests
             Assert.Equal(21, orderDetails.First().UnitPrice);
             Assert.Equal(3, orderDetails.First().Quantity);
         }
-    #endif
-       }
+#endif
+    }
 
 }

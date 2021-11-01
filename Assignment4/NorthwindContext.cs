@@ -18,7 +18,7 @@ namespace Assignment4
 
             optionsBuilder.LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information);
             optionsBuilder.EnableSensitiveDataLogging();
-            optionsBuilder.UseNpgsql("host=localhost;db=northwind;uid=postgres;pwd=");
+            optionsBuilder.UseNpgsql("host=localhost;db=northwind;uid=postgres;pwd=Popcorn3");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -29,12 +29,18 @@ namespace Assignment4
             modelBuilder.Entity<Category>().Property(x => x.Id).HasColumnName("categoryid");
             modelBuilder.Entity<Category>().Property(x => x.Name).HasColumnName("categoryname");
             modelBuilder.Entity<Category>().Property(x => x.Description).HasColumnName("description");
+            
 
 
             modelBuilder.Entity<Product>().ToTable("products");
             modelBuilder.Entity<Product>().Property(x => x.Id).HasColumnName("productid");
             modelBuilder.Entity<Product>().Property(x => x.Name).HasColumnName("productname");
             modelBuilder.Entity<Product>().Property(x => x.CategoryId).HasColumnName("categoryid");
+            modelBuilder.Entity<Product>().Property(x => x.UnitPrice).HasColumnName("unitprice");
+            modelBuilder.Entity<Product>().Property(x => x.QuantityPerUnit).HasColumnName("quantityperunit");
+            modelBuilder.Entity<Product>().Property(x => x.UnitsInStock).HasColumnName("unitsinstock");
+
+
 
 
             modelBuilder.Entity<OrderDetails>().ToTable("orderdetails").HasKey(pk => new {pk.ProductId, pk.OrderId});

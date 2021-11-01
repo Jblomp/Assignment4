@@ -14,7 +14,7 @@ namespace Assignment4
             foreach(var category in dataService.GetCategories())
             {
                 Console.WriteLine(category);
-            }      
+            }
 
         }
     }
