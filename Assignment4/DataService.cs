@@ -29,6 +29,10 @@ namespace Assignment4
         bool UpdateCategory(int id, string name, string desc);
 
         Product GetProduct(int id);
+
+        List<Product> GetProductByCategory(int catId);
+
+        List<Product> GetProductByName(string v);
     }
 
     public class DataService : IDataService
@@ -125,9 +129,31 @@ namespace Assignment4
             return product;
         }
 
-        public object GetProductByCategory(int v)
+        public List<Product> GetProductByCategory(int catId)
         {
-            throw new NotImplementedException();
+            List<Product> returnList = new List<Product>();
+            foreach (Product p in GetProducts())
+            {
+                if (catId == p.CategoryId)
+                {
+                    returnList.Add(GetProduct(p.Id));
+                }
+            }
+            return returnList;
+
+        }
+
+        public List<Product> GetProductByName(string v)
+        {
+            List<Product> returnList = new List<Product>();
+            foreach (Product p in GetProducts())
+            {
+                if (p.Name.Contains(v))
+                {
+                    returnList.Add(GetProduct(p.Id));
+                }
+            }
+            return returnList;
         }
     }
 }

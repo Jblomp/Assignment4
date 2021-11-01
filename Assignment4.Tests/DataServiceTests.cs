@@ -125,20 +125,20 @@ namespace Assignment4.Tests
             var products = service.GetProductByCategory(1);
             Assert.Equal(12, products.Count);
             Assert.Equal("Chai", products.First().Name);
-            Assert.Equal("Beverages", products.First().CategoryName);
-            Assert.Equal("Lakkalikˆˆri", products.Last().Name);
+            Assert.Equal("Beverages", products.First().Category.Name);
+            Assert.Equal("Lakkalik√∂√∂ri", products.Last().Name);
         }
-#if COMMENT
+
         [Fact]
         public void GetProduct_NameSubString_ReturnsProductsThatMachesTheSubString()
         {
             var service = new DataService();
             var products = service.GetProductByName("em");
             Assert.Equal(4, products.Count);
-            Assert.Equal("NuNuCa Nuﬂ-Nougat-Creme", products.First().ProductName);
-            Assert.Equal("Flotemysost", products.Last().ProductName);
+            Assert.Equal("NuNuCa Nu√ü-Nougat-Creme", products.First().Name);
+            Assert.Equal("Flotemysost", products.Last().Name);
         }
-
+#if COMMENT
         /* orders */
         [Fact]
         public void Order_Object_HasIdDatesAndOrderDetails()
