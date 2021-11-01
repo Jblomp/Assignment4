@@ -138,7 +138,7 @@ namespace Assignment4.Tests
             Assert.Equal("NuNuCa Nuß-Nougat-Creme", products.First().Name);
             Assert.Equal("Flotemysost", products.Last().Name);
         }
-#if COMMENT
+
         /* orders */
         [Fact]
         public void Order_Object_HasIdDatesAndOrderDetails()
@@ -161,7 +161,7 @@ namespace Assignment4.Tests
             Assert.Equal("Queso Cabrales", order.OrderDetails.First().Product.Name);
             Assert.Equal("Dairy Products", order.OrderDetails.First().Product.Category.Name);
         }
-
+#if COMMENT
         [Fact]
         public void GetOrders()
         {

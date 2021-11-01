@@ -22,7 +22,7 @@ namespace Assignment4
 
         IList<OrderDetails> GetOrderDetails();
 
-        IList<Order> GetOrder();
+        IList<Order> GetOrders();
 
         bool DeleteCategory(int id);
 
@@ -33,6 +33,12 @@ namespace Assignment4
         List<Product> GetProductByCategory(int catId);
 
         List<Product> GetProductByName(string v);
+        Order CreateOrder(DateTime date, DateTime req, DateTime ship, int fre, string sName, string sCity);
+        Order GetOrder(int orderId);
+        List<OrderDetails> GetOrderDetail(int id);
+
+
+
     }
 
     public class DataService : IDataService
@@ -101,10 +107,10 @@ namespace Assignment4
             return true;
         }
 
-        public IList<Order> GetOrder()
+        public IList<Order> GetOrders()
         {
             var ctx = new NorthwindContext();
-            return ctx.Order.ToList();
+            return ctx.Orders.ToList();
         }
 
         public bool UpdateCategory(int id, string name, string desc)
@@ -154,6 +160,44 @@ namespace Assignment4
                 }
             }
             return returnList;
+        }
+        public Order CreateOrder(DateTime date, DateTime req, DateTime ship, int fre, string sName, string sCity)
+        {
+            var ctx = new NorthwindContext();
+            Order order = new Order();
+            order.Id = ctx.Categories.Max(x => x.Id) + 1;
+            order.Date = date;
+            order.Required = req;
+            order.Shipped = ship;
+            order.Freight = fre;
+            order.ShipName = sName;
+            order.ShipCity = sCity;
+            order.OrderDetails = GetOrderDetail(order.Id);
+            ctx.Add(order);
+            ctx.SaveChanges();
+            return order;
+        }
+
+        public List<OrderDetails> GetOrderDetail(int id)
+        {
+
+            List<OrderDetails> returnList = new List<OrderDetails>();
+            foreach (OrderDetails orderDetails in GetOrderDetails())
+            {
+                if (orderDetails.OrderId == id)
+                {
+                    returnList.Add(orderDetails);
+                }
+            }
+            return returnList;
+        }
+
+        public Order GetOrder(int orderId)
+        {
+            var ctx = new NorthwindContext();
+            var order = ctx.Orders.FirstOrDefault(x => x.Id == orderId);
+            order.OrderDetails = GetOrderDetail(order.Id);
+            return order;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Assignment4
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
-        public DbSet<Order> Order { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -49,7 +49,7 @@ namespace Assignment4
             modelBuilder.Entity<Order>().ToTable("orders");
             modelBuilder.Entity<Order>().Property(x => x.Id).HasColumnName("orderid");
             modelBuilder.Entity<Order>().Property(x => x.Date).HasColumnName("orderdate");
-            modelBuilder.Entity<Order>().Property(x => x.Require).HasColumnName("requiredate");
+            modelBuilder.Entity<Order>().Property(x => x.Required).HasColumnName("requireddate");
             modelBuilder.Entity<Order>().Property(x => x.Shipped).HasColumnName("shippeddate");
             modelBuilder.Entity<Order>().Property(x => x.Freight).HasColumnName("freight");
             modelBuilder.Entity<Order>().Property(x => x.ShipName).HasColumnName("shipname"); 
