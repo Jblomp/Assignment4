@@ -37,8 +37,9 @@ namespace Assignment4
         Order GetOrder(int orderId);
         List<OrderDetails> GetOrderDetail(int id);
 
+        List<OrderDetails> GetOrderDetailsByProductId(int v);
 
-
+        List<OrderDetails> GetOrderDetailsByOrderId(int v);
     }
 
     public class DataService : IDataService
@@ -186,6 +187,8 @@ namespace Assignment4
             {
                 if (orderDetails.OrderId == id)
                 {
+                    orderDetails.Order = GetOrder(orderDetails.OrderId);
+                    orderDetails.Product = GetProduct(orderDetails.ProductId);
                     returnList.Add(orderDetails);
                 }
             }
@@ -196,8 +199,38 @@ namespace Assignment4
         {
             var ctx = new NorthwindContext();
             var order = ctx.Orders.FirstOrDefault(x => x.Id == orderId);
-            order.OrderDetails = GetOrderDetail(order.Id);
+            //order.OrderDetails = GetOrderDetail(order.Id);
             return order;
+        }
+
+        public List<OrderDetails> GetOrderDetailsByOrderId(int v)
+        {
+            List<OrderDetails> returnList = new List<OrderDetails>();
+            foreach (OrderDetails orderDetails in GetOrderDetails())
+            {
+                if (orderDetails.OrderId == v)
+                {
+                    orderDetails.Order = GetOrder(orderDetails.OrderId);
+                    orderDetails.Product = GetProduct(orderDetails.ProductId);
+                    returnList.Add(orderDetails);
+                }
+            }
+            return returnList;
+        }
+
+        public List<OrderDetails> GetOrderDetailsByProductId(int v)
+        {
+            List<OrderDetails> returnList = new List<OrderDetails>();
+            foreach (OrderDetails orderDetails in GetOrderDetails())
+            {
+                if (orderDetails.ProductId == v)
+                {
+                    orderDetails.Order = GetOrder(orderDetails.OrderId);
+                    orderDetails.Product = GetProduct(orderDetails.ProductId);
+                    returnList.Add(orderDetails);
+                }
+            }
+            return returnList;
         }
     }
 }

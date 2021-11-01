@@ -41,6 +41,8 @@ namespace Assignment4
 
 
             modelBuilder.Entity<OrderDetails>().ToTable("orderdetails").HasKey(pk => new {pk.ProductId, pk.OrderId});
+            modelBuilder.Entity<OrderDetails>().Property(x => x.ProductId).HasColumnName("productid");
+            modelBuilder.Entity<OrderDetails>().Property(x => x.OrderId).HasColumnName("orderid");
             modelBuilder.Entity<OrderDetails>().Property(x => x.UnitPrice).HasColumnName("unitprice");
             modelBuilder.Entity<OrderDetails>().Property(x => x.Quantity).HasColumnName("quantity");
             modelBuilder.Entity<OrderDetails>().Property(x => x.Discount).HasColumnName("discount");

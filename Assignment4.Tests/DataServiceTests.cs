@@ -126,7 +126,7 @@ namespace Assignment4.Tests
             Assert.Equal(12, products.Count);
             Assert.Equal("Chai", products.First().Name);
             Assert.Equal("Beverages", products.First().Category.Name);
-            Assert.Equal("Lakkalikööri", products.Last().Name);
+            Assert.Equal("LakkalikÃ¶Ã¶ri", products.Last().Name);
         }
 
         [Fact]
@@ -135,7 +135,7 @@ namespace Assignment4.Tests
             var service = new DataService();
             var products = service.GetProductByName("em");
             Assert.Equal(4, products.Count);
-            Assert.Equal("NuNuCa Nuß-Nougat-Creme", products.First().Name);
+            Assert.Equal("NuNuCa NuÃŸ-Nougat-Creme", products.First().Name);
             Assert.Equal("Flotemysost", products.Last().Name);
         }
 
@@ -161,7 +161,7 @@ namespace Assignment4.Tests
             Assert.Equal("Queso Cabrales", order.OrderDetails.First().Product.Name);
             Assert.Equal("Dairy Products", order.OrderDetails.First().Product.Category.Name);
         }
-#if COMMENT
+
         [Fact]
         public void GetOrders()
         {
@@ -169,7 +169,6 @@ namespace Assignment4.Tests
             var orders = service.GetOrders();
             Assert.Equal(830, orders.Count);
         }
-
 
         /* orderdetails */
         [Fact]
@@ -206,7 +205,7 @@ namespace Assignment4.Tests
             Assert.Equal(21, orderDetails.First().UnitPrice);
             Assert.Equal(3, orderDetails.First().Quantity);
         }
-#endif
+
     }
 
 }
